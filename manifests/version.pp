@@ -4,8 +4,6 @@ define pythonbrew::define::version (
     $test    => 'false',
     ) {
 
-    require => Anchor['pythonbrew::end']
-
     if $ensure == 'present' {
         exec { "install-python-${name}":
             command => "pythonbrew install ${name} -n",

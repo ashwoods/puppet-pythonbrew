@@ -1,4 +1,4 @@
-class pythonbrew::dependencies::ubuntu {
+class pythonbrew::package::debian {
 
   if ! defined(Package['curl'])                 { package { 'curl':                 ensure => installed } }
   if ! defined(Package['build-essential'])      { package { 'build-essential':      ensure => installed } }
