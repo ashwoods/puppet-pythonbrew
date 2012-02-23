@@ -40,6 +40,8 @@ class pythonbrew {
         command => "curl -kL http://xrl.us/pythonbrewinstall | bash",
         require => Class['pythonbrew::package'],
         user    => $pythonbrew::params::user,
+        unless  => "bash -l -c 'which pythonbrew'",
+
     }
 
     anchor {'pythonbrew::begin':

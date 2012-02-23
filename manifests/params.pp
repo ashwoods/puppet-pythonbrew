@@ -15,5 +15,6 @@
 # This class file is not called directly
 class pythonbrew::params {
   $user       = 'root'
-  $build_opt  = ''
+  $build_cmd  = 'sudopybrew install -n --no-setuptools --configure="--with-threads --enable-shared" -j2 -v'
+  $default    = true
 }
