@@ -34,8 +34,29 @@ class pythonbrew::package::debian {
   if ! defined(Package['git-core'])             { package { 'git-core':             ensure => installed } }
   if ! defined(Package['mercurial'])            { package { 'mercurial':            ensure => installed } }
 
-  if ! defined(Package['libjpeg8'])             { package { 'libjpeg8':             ensure => installed } }
-  if ! defined(Package['libjpeg8-dev '])        { package { 'libjpeg8-dev':         ensure => installed } }
+  # for PIL
   if ! defined(Package['libfreetype6 '])        { package { 'libfreetype6':         ensure => installed } }
   if ! defined(Package['libfreetype6-dev'])     { package { 'libfreetype6-dev':     ensure => installed } }
+
+
+  if ! defined(Package['libfreetype6-dev'])     { package { 'libfreetype6-dev':     ensure => installed } }
+
+  # for postgresql
+
+  if ! defined(Package['libpq-dev'])     { package { 'libpq-dev':     ensure => installed } }
+
+  case $operatingsystem {
+    ubuntu: { $libjpeg = "libjpeg62" }
+    debian: { $libjpeg = "libjpeg8"  }
+  }
+
+  package {'libjpeg':
+    name   => $libjpeg,
+    ensure => installed
+  }
+
+  package {'libjpeg-dev':
+    name   => "${libjpeg}-dev",
+    ensure => installed
+  }
 }
