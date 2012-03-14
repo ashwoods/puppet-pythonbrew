@@ -25,7 +25,9 @@
 # }
 class pythonbrew {
 
-    class { 'stdlib': }
+    if !defined(Class['stdlib']) {
+            class { 'stdlib': }
+    }
 
     class { 'pythonbrew::package':
         notify => Exec['pythonbrew::install'],
